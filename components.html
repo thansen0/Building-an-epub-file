@@ -152,7 +152,27 @@
 				<p>Here you should be able to logic through a lot of it, howver we see each chapter and .xhtml section is encased by a navMap and navPoint.  The play order is of course the order in which the sections should be listed.  Lastly, although it is optional, the dtb:depth is how many sub headings you'll have to work with.  In our table of contents we only have one level of pages, so we'll enter one.</p>
 				
 				<h1>toc.xhtml</h1>
-				<p></p>
+				<p>Contrary to what you've seen above, the toc.xhtml page does not determine formatting, however is viewed by the reader as the table of contents.  It is not technically necessary, however I would absolutely recommend having one.</p>
+				
+				<p>Since the toc.xhtml is not as necessary, it's format can vary and change however you'd like.  That said, here is an example page which has the title at top, and a list of the other chapters and links.</p>
+				
+				<code><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"&gt;
+&lt;head&gt;
+&lt;title&gt;toc.xhtml&lt;/title&gt;
+&lt;link href="CSS/template.css" rel="stylesheet" type="text/css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav id="toc" epub:type="toc"&gt;
+        &lt;h1 class="frontmatter"&gt;Table of Contents&lt;/h1&gt;
+        &lt;ol class="contents"&gt;
+               &lt;li&gt;&lt;a href="chapter_1.xhtml"&gt;Chapter 1&lt;/a&gt;&lt;/li&gt;
+               &lt;li&gt;&lt;a href="chapter_2.xhtml"&gt;Chapter 2&lt;/a&gt;&lt;/li&gt;
+               &lt;li&gt;&lt;a href="copyright.xhtml"&gt;Copyright&lt;/a&gt;&lt;/li&gt;
+        &lt;/ol&gt;
+    &lt;/nav&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></code>
 				
 				<h1>chapter_1.xhtml</h1>
 				<p></p>
