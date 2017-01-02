@@ -325,6 +325,20 @@ a:hover {
 	text-align: right;
 }
 
+@media (max-width: 750px) {
+	.nav-items {
+		border: none;
+		padding: 0;
+		text-align: left;
+	}
+}
+
+@media (max-width: 550px) {
+	.nav-items {
+		font-size: 1.4em;
+	}
+}
+
 /*
 	Code
 */
@@ -370,8 +384,8 @@ code {
 	color: #666;
 	font-family: "Nunito Sans", sans-serif;
 	font-weight: 300;
-	font-size: 1.2em;
-	padding: .4em .8em;
+	font-size: 1.4em;
+	padding: .4em 0;
 	position: absolute;
 }
 
