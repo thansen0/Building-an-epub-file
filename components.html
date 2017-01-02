@@ -3,6 +3,7 @@
 	<title>Making Ebooks</title>
 	<link href="css/style.css" type="text/css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Noto+Serif|Nunito+Sans:300,400" rel="stylesheet">
+	<script src="d3/d3.min.js" type="text/javascript"></script>
 </head>
 <body>
 	
@@ -36,6 +37,8 @@
 			<div class="content nine columns">
 				
 				<p>An .epub starts off life as a /META_INF and /OEBPS folders, plus a mimetype file.</p>
+				
+				<div id="canvas"></div>
 				
 				<h1>Mimetype</h1>
 				
@@ -204,7 +207,7 @@ li {
 	line-height: 1.4em;
 }</code></pre>
 				
-				<h1>Q/A</h1>
+				<h1>General Tips</h1>
 				<p>For those wondering, all of the .xhtml files and the .opf do not need specific names.  Altough mimetype and container.xml must have the same name throughout, the rest do not, and even the folder OEBPS may be named differently.  In fact a common alternative is EPUB.  The only issue is when doing this you will have to go back and modify the code wherever they use these names for it to find the correct styles.</p>
 				
 				<p>Additionally, when running the file, you don't have to compile it to view the book.  Although this does not work with all .epub viewers, a trick I have when using calibre is to simply open the .opf file using the built in ebook-viewer, which allows you to view it without repeatedly re zipping and naming the book.</p>
@@ -223,5 +226,6 @@ li {
 			</div>
 		</div>
 	</div>
+	<script src="js/canvas.js" type="text/javascript"></script>
 </body>
 </html>
