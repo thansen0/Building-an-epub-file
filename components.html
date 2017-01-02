@@ -140,7 +140,7 @@
 				
 				<p>Since the toc.xhtml is not as necessary, it's format can vary and change however you'd like.  That said, here is an example page which has the title at top, and a list of the other chapters and links.</p>
 				
-				<code><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+				<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"&gt;
 &lt;head&gt;
 &lt;title&gt;toc.xhtml&lt;/title&gt;
@@ -156,12 +156,12 @@
         &lt;/ol&gt;
     &lt;/nav&gt;
 &lt;/body&gt;
-&lt;/html&gt;</pre></code>
+&lt;/html&gt;</code></pre>
 				
 				<h1>chapter_1.xhtml</h1>
 				<p>Similar to the toc.xhtml, this page simply deals with the book content.  As an example I'm including chapters 1, howver they're each made up of lorem ipsum.  They are as follows</p>
 				
-				<code><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+				<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"&gt;
 &lt;head&gt;
 &lt;title&gt;chapter_1.xhtml&lt;/title&gt;
@@ -178,14 +178,14 @@
 		/css/template.css.  You would presumably have more chapters. --&gt;
 
 &lt;/body&gt;
-&lt;/html&gt; </pre></code>
+&lt;/html&gt; </code></pre>
 				
 				<p>Chapter 2 would look identical, however would be named chapter_2.xhtml or whatever name you set for it in the .ncx and the .opf.</p>
 				
 				<h1>css/template.css</h1>
 				<p>And finally, the css file, which we have decided to name template.css, but may be anything.  Again this of course may be anything, however here is a nice design I recently wrote.  It's often not good practice to include font sizes, colors, or other items since ebook readers  let the reader modify these among other things, however here is the basic CSS file I used when reading from calibre (which does not modify these features).</p>
 				
-				<code><pre>h1 {
+				<pre><code>h1 {
   text-align: right;
 }
 
@@ -212,7 +212,7 @@ li {
 	font-family: sans-serif;
 	font-size: 1.2em;
 	line-height: 1.4em;
-}</pre></code>
+}</code></pre>
 				
 				<h1>Q/A</h1>
 				<p>For those wondering, all of the .xhtml files and the .opf do not need specific names.  Altough mimetype and container.xml must have the same name throughout, the rest do not, and even the folder OEBPS may be named differently.  In fact a common alternative is EPUB.  The only issue is when doing this you will have to go back and modify the code wherever they use these names for it to find the correct styles.</p>
