@@ -121,30 +121,14 @@
 &lt;/docTitle&gt;
 
 &lt;navMap&gt;
-	&lt;navPoint id="titlepage" playOrder=1&gt;
-		&lt;navLabel&gt;&lt;text&gt;Title page&lt;/text&gt;&lt;/navLabel&gt;
-		&lt;content src="titlepage.xhtml" /&gt;
-	&lt;/navPoint&gt;
-&lt;/navMap&gt;
-
-&lt;navMap&gt;
-	&lt;navPoint id="chapter_1" playOrder=2&gt;
+	&lt;navPoint id="chapter_1" playOrder=1&gt;
 		&lt;navLabel&gt;&lt;text&gt;Chapter 1&lt;/text&gt;&lt;/navLabel&gt;
 		&lt;content src="chapter_1.xhtml" /&gt;
 	&lt;/navPoint&gt;
-&lt;/navMap&gt;
 
-&lt;navMap&gt;
-	&lt;navPoint id="chapter_2" playOrder=3&gt;
+	&lt;navPoint id="chapter_2" playOrder=2&gt;
 		&lt;navLabel&gt;&lt;text&gt;Chapter 2&lt;/text&gt;&lt;/navLabel&gt;
 		&lt;content src="chapter_2.xhtml" /&gt;
-	&lt;/navPoint&gt;
-&lt;/navMap&gt;
-
-&lt;navMap&gt;
-	&lt;navPoint id="chapter_3" playOrder=4&gt;
-		&lt;navLabel&gt;&lt;text&gt;Chapter 3&lt;/text&gt;&lt;/navLabel&gt;
-		&lt;content src="chapter_3.xhtml" /&gt;
 	&lt;/navPoint&gt;
 &lt;/navMap&gt;
 
@@ -175,7 +159,65 @@
 &lt;/html&gt;</pre></code>
 				
 				<h1>chapter_1.xhtml</h1>
-				<p></p>
+				<p>Similar to the toc.xhtml, this page simply deals with the book content.  As an example I'm including chapters 1, howver they're each made up of lorem ipsum.  They are as follows</p>
+				
+				<code><pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops"&gt;
+&lt;head&gt;
+&lt;title&gt;chapter_1.xhtml&lt;/title&gt;
+&lt;link href="CSS/template.css" rel="stylesheet" type="text/css" /&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;h1&gt;Chapter 1&lt;/h1&gt;
+
+	&lt;p&gt;Nullam eros diam, hendrerit vel nibh in, malesuada aliquet massa. Nam blandit egestas massa, sit amet efficitur erat luctus vel. In eu leo at nibh egestas venenatis vel nec eros. Nulla bibendum sapien vel velit iaculis, in feugiat risus vestibulum. Suspendisse placerat laoreet eros, et ullamcorper est ornare eu. Praesent imperdiet lacus vel vehicula accumsan. Donec fringilla odio velit. Cras tempus est in lacus eleifend, cursus pellentesque lorem vehicula. Ut metus turpis, posuere eget imperdiet eget, bibendum in tortor. Mauris id dolor tellus. Suspendisse at nisi tellus. Duis lectus arcu, pulvinar et pretium in, tincidunt facilisis nulla. Nulla ullamcorper aliquam ullamcorper. Nunc ultricies nibh vitae urna hendrerit varius.&lt;/p&gt;
+
+	&lt;!--	Here you may use classes and the like and then update the styling in
+		/css/template.css.  You would presumably have more chapters. --&gt;
+
+&lt;/body&gt;
+&lt;/html&gt; </pre></code>
+				
+				<p>Chapter 2 would look identical, however would be named chapter_2.xhtml or whatever name you set for it in the .ncx and the .opf.</p>
+				
+				<h1>css/template.css</h1>
+				<p>And finally, the css file, which we have decided to name template.css, but may be anything.  Again this of course may be anything, however here is a nice design I recently wrote.  It's often not good practice to include font sizes, colors, or other items since ebook readers  let the reader modify these among other things, however here is the basic CSS file I used when reading from calibre (which does not modify these features).</p>
+				
+				<code><pre>h1 {
+  text-align: right;
+}
+
+h1, h2, h3, h4, h5 {
+	color: #666;
+	font-family: sans-serif;
+	font-size: 2.2em;
+}
+
+p {
+	color: #444;
+	font-family: serif;
+	font-size: 1.3em;
+}
+
+a {
+	text-decoration: none;
+	color: #1EAEDB;
+}
+
+li {
+	list-style: upper-roman;
+	color: #444;
+	font-family: sans-serif;
+	font-size: 1.2em;
+	line-height: 1.4em;
+}</pre></code>
+				
+				<h1>Q/A</h1>
+				<p>For those wondering, all of the .xhtml files and the .opf do not need specific names.  Altough mimetype and container.xml must have the same name throughout, the rest do not, and even the folder OEBPS may be named differently.  In fact a common alternative is EPUB.  The only issue is when doing this you will have to go back and modify the code wherever they use these names for it to find the correct styles.</p>
+				
+				<p>Additionally, when running the file, you don't have to compile it to view the book.  Although this does not work with all .epub viewers, a trick I have when using calibre is to simply open the .opf file using the built in ebook-viewer, which allows you to view it without repeatedly re zipping and naming the book.</p>
 				
 				<div class="next-section">
 					<a href="product.html" class="next-link">
