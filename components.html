@@ -1,0 +1,175 @@
+<html>
+<head>
+	<title>Making Ebooks</title>
+<!--
+	<link href="css/skeleton.css" type="text/css" rel="stylesheet">
+	<link href="css/normalize.css" type="text/css" rel="stylesheet">
+-->
+	<link href="css/style.css" type="text/css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Serif|Nunito+Sans:300,400" rel="stylesheet">
+</head>
+<body>
+	
+	<div class="container">
+		<div class="row">
+			<div class="three columns nav-plug">
+				<a href="https://github.com/Haxonek" class="small-plug-nav"></a>
+			</div>
+			<div class="nine columns">
+				<h1 class="page-title">The Components</h1>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="nav-menu three columns">
+				<ul class="nav-items">
+					<a href="index.html" class="nav-item-link">
+						<li class="nav-item">About EPub's</li>
+					</a>
+					<a href="components.html" class="nav-item-link">
+						<li class="nav-item">The Components</li>
+					</a>
+					<a href="product.html" class="nav-item-link">
+						<li class="nav-item">Final Product</li>
+					</a>
+<!--
+					<a href="#" class="nav-item-link">
+						<li class="nav-item">Adding Extras</li>
+					</a>
+-->
+					<a href="#" class="nav-item-link">
+						<li class="nav-item">Resources</li>
+					</a>
+				</ul>
+			</div>
+			<div class="content nine columns">
+				
+				<p>An .epub starts off life as a /META_INF and /OEPBS folders, plus a mimetype file.</p>
+				
+				<h1>Mimetype</h1>
+				
+				<p>The mimetype file is by far the easiest file in the application.  It doesn't ever change, and contains the following content</p>
+				
+				<pre><code>application/epub+zip</code></pre>
+				
+				<p>This is it's internet media type, which is used to let people know what the format is.</p>
+				
+				<h1>/META_INF</h1>
+				<p>In this folder we again just have some more meta files, specifically container.xml, which lets the reader know where the other files are located.  It's code can, for the most part, simply be copied and pasted as is.</p>
+				<pre><code>&lt;?xml version="1.0"?&gt;
+&lt;container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container"&gt;
+&lt;rootfiles&gt;
+	&lt;rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml"/&gt;
+&lt;/rootfiles&gt;
+&lt;/container&gt;</code></pre>
+				
+				<h1>/OEBPS</h1>
+				<p>This is where all of the action lays.  Here we have all of the pages required (in .xhtml, and including the table of contents, or toc.xhtml), as well as other necessary files such as content.opf, toc.ncx, and auxilary files you decide to include, such as a folder for the css and the book cover.</p>
+				
+				<h3>content.opf</h3>
+				<p>This is the first file structure that the .epub reader will actually read.  It lets it know the order of each item and what should be in the file.</p>
+				
+				<pre><code>&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;package xmlns="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/" unique-identifier="db-id" version="3.0"&gt;
+
+	&lt;metadata&gt;
+	    &lt;dc:title id="t1"&gt;Book Title&lt;/dc:title&gt;
+	    &lt;dc:creator opf:role="aut"&gt;Author Name&lt;/dc:creator&gt;
+	    &lt;dc:identifier id="db-id"&gt;isbn&lt;/dc:identifier&gt;
+	    &lt;meta property="dcterms:modified"&gt;2016-12-31T15:25:13.941&lt;/meta&gt;
+	    &lt;dc:language&gt;en&lt;/dc:language&gt;
+	&lt;/metadata&gt;
+
+	&lt;manifest&gt;
+	    &lt;item id="toc" properties="nav" href="toc.xhtml" media-type="application/xhtml+xml" /&gt;
+	    &lt;item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" /&gt;
+	    &lt;item id="template_css" href="template.css" media-type="text/css" /&gt;
+	    &lt;item id="toc" href="toc.xhtml" media-type="application/xhtml+xml" /&gt;
+		&lt;item id="chapter_1" href="chapter_1.xhtml" media-type="application/xhtml+xml" /&gt;
+		&lt;item id="chapter_2" href="chapter_2.xhtml" media-type="application/xhtml+xml" /&gt;
+		&lt;item id="chapter_3" href="chapter_3.xhtml" media-type="application/xhtml+xml" /&gt;
+	&lt;/manifest&gt;
+
+	&lt;spine toc="ncx"&gt;
+		&lt;itemref idref="toc" /&gt;
+		&lt;itemref idref="chapter_1" /&gt;
+		&lt;itemref idref="chapter_2" /&gt;
+		&lt;itemref idref="chapter_3" /&gt;
+	&lt;/spine&gt;
+
+&lt;/package&gt;</code></pre>
+				
+				<p>This is broken up into three parts.  The metadata section contains exactly that; meatdata about the book.  In particular, this is where things like the author and one of the places title will be read from, so you'll want to keep it in mind.  You can see more of the optional metadata tags <a href="#" target="_blank">here(ADD LINK)</a></p>
+				
+				<p>The second section, manifest, contains a list of all the files in the .epub document, specifically those in the /OEPBS folder.  The files must be listed here in order to be usable.</p>
+				
+				<p>Lastly we see the spine, which lists the items in order of how they will appear in the book.</p>
+				
+				<h1>toc.ncx</h1>
+				<p>This is one of the more complex files in the book, containing a detailed description of the spine.  It lists the order of each section and the order it should be in.</p>
+				
+				<pre><code>&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;ncx version="2005-1" xml:lang="en" xmlns="http://www.daisy.org/z3986/2005/ncx/"&gt;
+
+&lt;head&gt;
+    &lt;meta name="dtb:uid" content="isbn"/&gt;
+    &lt;meta name="dtb:depth" content="1"/&gt;
+&lt;/head&gt;
+
+&lt;docTitle&gt;
+    &lt;text&gt;Title&lt;/text&gt;
+&lt;/docTitle&gt;
+
+&lt;navMap&gt;
+	&lt;navPoint id="titlepage" playOrder=1&gt;
+		&lt;navLabel&gt;&lt;text&gt;Title page&lt;/text&gt;&lt;/navLabel&gt;
+		&lt;content src="titlepage.xhtml" /&gt;
+	&lt;/navPoint&gt;
+&lt;/navMap&gt;
+
+&lt;navMap&gt;
+	&lt;navPoint id="chapter_1" playOrder=2&gt;
+		&lt;navLabel&gt;&lt;text&gt;Chapter 1&lt;/text&gt;&lt;/navLabel&gt;
+		&lt;content src="chapter_1.xhtml" /&gt;
+	&lt;/navPoint&gt;
+&lt;/navMap&gt;
+
+&lt;navMap&gt;
+	&lt;navPoint id="chapter_2" playOrder=3&gt;
+		&lt;navLabel&gt;&lt;text&gt;Chapter 2&lt;/text&gt;&lt;/navLabel&gt;
+		&lt;content src="chapter_2.xhtml" /&gt;
+	&lt;/navPoint&gt;
+&lt;/navMap&gt;
+
+&lt;navMap&gt;
+	&lt;navPoint id="chapter_3" playOrder=4&gt;
+		&lt;navLabel&gt;&lt;text&gt;Chapter 3&lt;/text&gt;&lt;/navLabel&gt;
+		&lt;content src="chapter_3.xhtml" /&gt;
+	&lt;/navPoint&gt;
+&lt;/navMap&gt;
+
+&lt;/ncx&gt;</code></pre>
+				<p>Here you should be able to logic through a lot of it, howver we see each chapter and .xhtml section is encased by a navMap and navPoint.  The play order is of course the order in which the sections should be listed.  Lastly, although it is optional, the dtb:depth is how many sub headings you'll have to work with.  In our table of contents we only have one level of pages, so we'll enter one.</p>
+				
+				<h1>toc.xhtml</h1>
+				<p></p>
+				
+				<h1>chapter_1.xhtml</h1>
+				<p></p>
+				
+				<div class="next-section">
+					<a href="product.html" class="next-link">
+						<h6>Final Product</h6>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="twelve columns">
+				<p class="small-plug-footer">Copyright 2016 | <a href="https://github.com/Haxonek">GitHub</a></p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
