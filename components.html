@@ -1,8 +1,8 @@
 <html>
 <head>
-	<title>Making Ebooks</title>
+	<title>The Components</title>
 	<link href="css/style.css" type="text/css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Noto+Serif|Nunito+Sans:300,400" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Serif|Nunito+Sans:300" rel="stylesheet">
 	<script src="d3/d3.min.js" type="text/javascript"></script>
 </head>
 <body>
@@ -13,7 +13,7 @@
 				<a href="https://github.com/Haxonek" class="small-plug-nav"></a>
 			</div>
 			<div class="nine columns">
-				<h1 class="page-title">The Components</h1>
+				<h1 class="page-title" id="EPUB">The Components</h1>
 			</div>
 		</div>
 		
@@ -40,7 +40,7 @@
 				
 				<div id="canvas"></div>
 				
-				<h1>Mimetype</h1>
+				<h1 id="mimetype">Mimetype</h1>
 				
 				<p>The mimetype file is by far the easiest file in the application.  It doesn't ever change, and contains the following content</p>
 				
@@ -48,7 +48,7 @@
 				
 				<p>This is it's internet media type, which is used to let people know what the format is.</p>
 				
-				<h1>/META_INF</h1>
+				<div id="container.xml"><h1 id="META_INF">/META_INF</h1></div>
 				<p>In this folder we again just have some more meta files, specifically container.xml, which lets the reader know where the other files are located.  It's code can, for the most part, simply be copied and pasted as is.</p>
 				<pre><code>&lt;?xml version="1.0"?&gt;
 &lt;container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container"&gt;
@@ -57,10 +57,10 @@
 &lt;/rootfiles&gt;
 &lt;/container&gt;</code></pre>
 				
-				<h1>/OEBPS</h1>
+				<h1 id="OEBPS">/OEBPS</h1>
 				<p>This is where all of the action lays.  Here we have all of the pages required (in .xhtml, and including the table of contents, or toc.xhtml), as well as other necessary files such as content.opf, toc.ncx, and auxilary files you decide to include, such as a folder for the css and the book cover.</p>
 				
-				<h3>content.opf</h3>
+				<h3 id="content.opf">content.opf</h3>
 				<p>This is the first file structure that the .epub reader will actually read.  It lets it know the order of each item and what should be in the file.</p>
 				
 				<pre><code>&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
@@ -98,7 +98,7 @@
 				
 				<p>Lastly we see the spine, which lists the items in order of how they will appear in the book.</p>
 				
-				<h1>toc.ncx</h1>
+				<h1 id="toc.ncx">toc.ncx</h1>
 				<p>This is one of the more complex files in the book, containing a detailed description of the spine.  It lists the order of each section and the order it should be in.</p>
 				
 				<pre><code>&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
@@ -128,7 +128,7 @@
 &lt;/ncx&gt;</code></pre>
 				<p>Here you should be able to logic through a lot of it, howver we see each chapter and .xhtml section is encased by a navMap and navPoint.  The play order is of course the order in which the sections should be listed.  Lastly, although it is optional, the dtb:depth is how many sub headings you'll have to work with.  In our table of contents we only have one level of pages, so we'll enter one.</p>
 				
-				<h1>toc.xhtml</h1>
+				<h3 id="toc.xhtml">toc.xhtml</h3>
 				<p>Contrary to what you've seen above, the toc.xhtml page does not determine formatting, however is viewed by the reader as the table of contents.  It is not technically necessary, however I would absolutely recommend having one.</p>
 				
 				<p>Since the toc.xhtml is not as necessary, it's format can vary and change however you'd like.  That said, here is an example page which has the title at top, and a list of the other chapters and links.</p>
@@ -151,7 +151,7 @@
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 				
-				<h1>chapter_1.xhtml</h1>
+				<div id="chapter_2.xhtml"><h3 id="chapter_1.xhtml">chapter_1.xhtml</h3></div>
 				<p>Similar to the toc.xhtml, this page simply deals with the book content.  As an example I'm including chapters 1, howver they're each made up of lorem ipsum.  They are as follows</p>
 				
 				<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
@@ -175,7 +175,7 @@
 				
 				<p>Chapter 2 would look identical, however would be named chapter_2.xhtml or whatever name you set for it in the .ncx and the .opf.</p>
 				
-				<h1>/CSS/template.css</h1>
+				<div id="CSS"><h2 id="template.css">/CSS/template.css</h2></div>
 				<p>And finally, the css file, which we have decided to name template.css, but may be anything.  Again this of course may be anything, however here is a nice design I recently wrote.  It's sometimes not good practice to include font sizes, colors, or other items since ebook readers  let the reader modify these among other things, however it can also add a little flavor to the book.  I personally like to add some css, however try to keep it minimal as to not inhibit the reading experience.</p>
 				
 				<pre><code>h1 {

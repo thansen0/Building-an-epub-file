@@ -84,6 +84,12 @@ node.append("circle")
 node.append("text")
 	.attr("dy", ".35em")
 	.attr("x", function(d) { return d.children ? -13 : 13; })
+	.append("a")
+	.attr("xlink:href", function(d) { return "#" + d.data.name })
+	.attr("target", "_self")
+	.classed("node-link", true)
+//	.style("stroke", "#FFA500")
 	.style("text-anchor", function(d) { 
 		return d.children ? "end" : "start"; })
-	.text(function(d) { return d.data.name; });
+	.text(function(d) { return d.data.name; })
+	.classed("node-link", true);

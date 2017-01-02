@@ -317,7 +317,7 @@ a:hover {
 .nav-item {
 	list-style: none;
 	font-family: 'Nunito Sans', sans-serif;
-/*	font-weight: 300;*/
+	font-weight: 300;
 }
 
 .next-section {
@@ -364,9 +364,7 @@ code {
 	d3.js
 */
 
-#canvas {
-/*	border: 1px #666 solid;*/
-}
+#canvas {}
 
 .canvas-title {
 	color: #666;
@@ -379,7 +377,7 @@ code {
 
 .node circle {
 	fill: #fff;
-	stroke: #FFA500;
+	stroke: #B1B1B1;
 	stroke-width: 3px;
 }
 
@@ -395,4 +393,10 @@ code {
 	fill: none;
 	stroke: #ccc;
 	stroke-width: 2px;
+}
+
+.node-link {
+	fill: #FFA500;
+	font-weight: lighter;
+	font-family: "Noto Serif", serif;
 }
